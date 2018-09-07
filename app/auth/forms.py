@@ -12,8 +12,8 @@ class Signup(FlaskForm):
 
     def validate_new_account(self,data_field):
         if User.query.filter_by(username=data_field.data).first() and User.query.filter_by(email=data_field.data).first():
-            raise ValidationError('USERNAME ALREADY TAKEN')
-        
+            raise ValidationError('USERNAME OR EMAIL IS ALREADY TAKEN')
+    
 
 
 class Login(FlaskForm):

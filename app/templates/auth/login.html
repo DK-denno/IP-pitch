@@ -7,7 +7,7 @@
 
         {{ wtf.quick_form(login) }}
         <P>Don't have an account? I gatchu</P>
-    <p>Click here to create account<a href='/signup'> CREATE ACCOUNT</a></p>
+    <p>Click here to create account<a href="{{url_for('auth.signup')}}"> CREATE ACCOUNT</a></p>
 
     </div>
     
