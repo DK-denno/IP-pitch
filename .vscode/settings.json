@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "${workspaceFolder}/pitch/bin/python",
+    "python.linting.enabled": false
+}
