@@ -46,7 +46,7 @@ def Political():
     displaying pitches themselves
     '''
     Political = Posts.query.filter_by(category="Political").all()
-    print(pitchess)
+    
     return render_template('political.html',pitches=Political)
 
 
