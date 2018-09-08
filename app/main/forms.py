@@ -12,3 +12,5 @@ class Post(FlaskForm):
                                    ('pick-up-lines', 'pick-up-lines')],
                           validators=[Required()])
     submit = SubmitField('Submit',validators=[Required()])
+
+    

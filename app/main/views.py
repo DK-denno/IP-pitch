@@ -7,32 +7,25 @@ from .forms import Post
 
 
 @main.route('/')
-@login_required
+
 def index():
    
     title = 'one'
     
     return render_template('index.html',title=title)
 
-
-@main.route('/posts',methods=['GET','POST'])
-def get_posts():
-    '''creating a new instance of the Post class imported from app.models
-    '''
-    posts = Posts(id,title,post,category)
-    '''
-    saving the new post to the database
-    '''
-    posts.save_posts()
-    return render_template('post.html')
-
-
 @main.route('/pitch',methods=['GET','POST'])
+@login_required
 def pitch():
     '''
     displaying the pitching form
     '''
     pitch = Post()
+    pitches = Posts(title=pitch.title.data,post=pitch.post.data)
+    pitches.save_post()
+
     title = 'PITCH-FORM'
+
+
 
     return render_template('pitch.html',pitch=pitch,title=title)

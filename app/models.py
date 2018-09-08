@@ -33,7 +33,7 @@ class Posts(UserMixin,db.Model):
     title = db.Column(db.String(255))
     post = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    category = db.Column(db.Integer,db.ForeignKey('categories.id'))
+    
    
 
     def save_post(self):
@@ -52,10 +52,15 @@ class Comments(UserMixin,db.Model):
     comment = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+    @classmethod
+    def get_comments(cls,id):
+        comments = Comments.query.all()
+        return comments
 
-class Categories(UserMixin,db.Model):
-    __tablename__='categories'
-    id = db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(255))
-    post = db.relationship('Posts',backref = 'posts',lazy = "dynamic")
+
+
+
     
