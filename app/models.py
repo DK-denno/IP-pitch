@@ -57,5 +57,5 @@ class Categories(UserMixin,db.Model):
     __tablename__='categories'
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(255))
-    post = db.relationship('posts',backref = 'category',lazy = "dynamic")
+    post = db.relationship('Posts',backref = 'posts',lazy = "dynamic")
     

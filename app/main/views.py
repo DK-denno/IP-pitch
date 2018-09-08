@@ -3,7 +3,7 @@ from . import main
 from .. import auth
 from ..models import Posts
 from flask_login import login_required
-
+from .forms import Post
 
 
 @main.route('/')
@@ -27,3 +27,12 @@ def get_posts():
     return render_template('post.html')
 
 
+@main.route('/pitch',methods=['GET','POST'])
+def pitch():
+    '''
+    displaying the pitching form
+    '''
+    pitch = Post()
+    title = 'PITCH-FORM'
+
+    return render_template('pitch.html',pitch=pitch,title=title)
