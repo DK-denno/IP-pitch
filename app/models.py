@@ -32,6 +32,7 @@ class Posts(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(255))
     post = db.Column(db.String(255))
+    category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
    
