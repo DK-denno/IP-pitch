@@ -31,19 +31,30 @@ def pitch():
 
     return render_template('pitch.html',pitch=pitch,title=title)
 
-@main.route('/pitches',methods = ['GET','POST'])
+@main.route('/Motivational',methods = ['GET','POST'])
 def pitches():
     '''
     displaying pitches themselves
     '''
-    pitchess = Posts.query.filter_by(category="Motivational").all()
-    print(pitchess)
-    return render_template('pitchess.html',pitches=pitchess)
+    Motivational = Posts.query.filter_by(category="Motivational").all()
+    
+    return render_template('pitchess.html',pitches=Motivational)
 
-@main.route('/comment',methods=['GET','POST'])
-def comment():
+@main.route('/Political',methods = ['GET','POST'])
+def Political():
     '''
-    displays the coments form
+    displaying pitches themselves
     '''
-    commentform= Comment()
-    return render_template('comment.html',commentform=commentform)
+    Political = Posts.query.filter_by(category="Political").all()
+    print(pitchess)
+    return render_template('political.html',pitches=Political)
+
+
+@main.route('/pick-up-lines',methods = ['GET','POST'])
+def pick():
+    '''
+    displaying pitches themselves
+    '''
+    pickup = Posts.query.filter_by(category="pick-up-lines").all()
+    
+    return render_template('pickup.html',pitches=pick-up )
