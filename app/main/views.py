@@ -11,8 +11,8 @@ from .forms import Post,Comment
 def index():
    
     title = 'one'
-    
-    return render_template('index.html',title=title)
+    all = Posts.query.all()
+    return render_template('index.html',title=title,posts=all)
 
 @main.route('/pitch',methods=['GET','POST'])
 @login_required
@@ -21,9 +21,11 @@ def pitch():
     displaying the pitching form
     '''
     pitch = Post()
-    pitches = Posts(title=pitch.title.data,post=pitch.post.data,category=pitch.category.data)
-    pitches.save_post()
-    
+    if pitch.validate_on_submit():  
+      
+        pitches = Posts(title=pitch.title.data,post=pitch.post.data,category=pitch.category.data)
+        pitches.save_post()
+        return redirect(url_for('main.index'))
 
     title = 'PITCH-FORM'
 
@@ -57,4 +59,4 @@ def pick():
     '''
     pickup = Posts.query.filter_by(category="pick-up-lines").all()
     
-    return render_template('pickup.html',pitches=pick-up )
+    return render_template('pickup.html',pitches=pickup )
