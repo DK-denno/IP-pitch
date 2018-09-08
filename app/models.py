@@ -16,14 +16,14 @@ class Posts(db.Model):
     category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    # def save_post(self):
-    #     db.session.add(self)
-    #     db.session.commit()
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
 
-    # @classmethod
-    # def get_post(cls,id):
-    #     posts = Posts.query.all()
-    #     return posts
+    @classmethod
+    def get_post(cls,id):
+        posts = Posts.query.all()
+        return posts
 
 
 class Comments(db.Model):
