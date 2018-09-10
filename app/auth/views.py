@@ -1,9 +1,11 @@
 from . import auth
 from flask import render_template,redirect,url_for,flash,request
 from ..models import User
-from .forms import Signup,Login
+from .forms import Signup,Login,UpdateProfile
 from .. import db
 from flask_login import login_user,logout_user,login_required
+from ..email import mail_message
+
 
 
 
@@ -11,12 +13,15 @@ from flask_login import login_user,logout_user,login_required
 def signup():
     register = Signup()
     if register.validate_on_submit():
-        user = User.query.filter_by(user_name=register.Username.data)
+        user = User.query.filter_by(user_name=register.Username.data).first()
         users = User(user_name=register.Username.data,email=register.Email.data,password=register.Password.data)       
         
         db.session.add(users)
         db.session.commit()
-        print('wow')
+        #print('wow')
+        
+        mail_message("Welcome to pitches not bitches","email/welcome_user",users.email,user=user)
+        
         return redirect(url_for('auth.login'))
 
     
