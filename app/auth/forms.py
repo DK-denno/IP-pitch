@@ -8,7 +8,7 @@ class Signup(FlaskForm):
     Username = StringField('USERNAME',validators=[Required()])
     Password = PasswordField('password',validators=[Required(), EqualTo('password2',message = 'Passwords must match')])    
     password2 = PasswordField('Confirm Passwords',validators = [Required()])
-    submit = SubmitField('SIGN UP')
+    submit = SubmitField('SIGN IN')
 
     def validate_new_account(self,data_field):
          def validate_email(self,data_field):

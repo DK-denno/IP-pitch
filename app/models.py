@@ -10,7 +10,9 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique=True,index = True)
     user_name = db.Column(db.String(255))
     password_secure = db.Column(db.String(255))
-    posts = db.relationship('Posts',backref = 'author',lazy = "dynamic")
+    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
+
+    
     comments = db.relationship('Comments',backref = 'author',lazy = "dynamic")
 
     @property
@@ -35,7 +37,8 @@ class Posts(UserMixin,db.Model):
     post = db.Column(db.String(255))
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     category = db.Column(db.String(255))
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    user = db.relationship('User',backref = 'post',lazy = "dynamic")
+    
     
    
 
@@ -58,10 +61,12 @@ class Comments(UserMixin,db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+    
     @classmethod
-    def get_comments(cls,id):
-        comments = Comments.query.all()
-        return comments
+    def get_comment(cls,id):
+        comm = Comments.query.filter_by(id=id).all()
+        return comm
 
 
 

@@ -60,3 +60,15 @@ def pick():
     pickup = Posts.query.filter_by(category="pick-up-lines").all()
     
     return render_template('pickup.html',pitches=pickup )
+
+# @main.route('/comments/<int:id>')
+# def comment(id):
+#     comment_post = Posts.query.filter_by(id = posts.id).first()
+#     comm = Comment()
+#     if comm.validate_on_submit():
+#         feedback =  Comments(comment=form.comments.data)    
+#         feedback.save_comment()
+#         comment_itself = Comments.query.all()
+#         return render_template('comments.html',comm = comm,comment_itself=comment_itself,comment=comment_post)
+#     return render_template('comments.html',comm = comm,comment=comment_post)
+

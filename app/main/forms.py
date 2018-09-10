@@ -11,7 +11,9 @@ class Post(FlaskForm):
                                 ('Motivational', 'Motivational'),
                                    ('pick-up-lines', 'pick-up-lines')],
                           validators=[Required()])
-    submit = SubmitField('Submit',validators=[Required()])
+    submit = SubmitField('Submit')
 
 class Comment(FlaskForm):
-    comment = TextField( validators=[Required()], render_kw={"placeholder": "COMMENT"})
+    username = StringField('username',validators=[Required()], render_kw={"placeholder": "USERNAME"})
+    comments = TextField('Comment' ,validators=[Required()], render_kw={"placeholder": "COMMENT"})
+    submit = SubmitField('Submit')
