@@ -1,8 +1,8 @@
 from flask import render_template,redirect,url_for
 from . import main
 from .. import auth
-from ..models import Posts
-from flask_login import login_required
+from ..models import Posts,User
+from flask_login import login_required,current_user
 from .forms import Post,Comment
 
 
@@ -61,6 +61,10 @@ def pick():
     
     return render_template('pickup.html',pitches=pickup )
 
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(user_name = uname).first()
+    return render_template("profile/profile.html", user = user)
 # @main.route('/comments/<int:id>')
 # def comment(id):
 #     comment_post = Posts.query.filter_by(id = posts.id).first()

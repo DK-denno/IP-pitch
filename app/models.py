@@ -9,6 +9,8 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key=True)
     email = db.Column(db.String(255),unique=True,index = True)
     user_name = db.Column(db.String(255))
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
     post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
 
