@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 # from . import main
 from config import config_options
 # from .config import DevConfig
@@ -11,7 +12,7 @@ from flask_mail import Mail
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 
-
+migrate = Migrate()
 mail = Mail()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -31,6 +32,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    migrate.init_app(app,db)
 
     # app.config.from_object(DevConfig)
     # app.config.from_pyfile("config.py")
