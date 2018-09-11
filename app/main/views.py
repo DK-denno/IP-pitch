@@ -10,23 +10,6 @@ from .forms import Post,Comment,UpdateProfile
 @main.route('/',methods=['GET','POST'])
 
 def index():
-    upvotes = Upvotes()
-    if upvotes.validate_on_submit():
-        user = User.query.filter_by(id=current_user.id)
-        print(user)
-        if user == None:
-                           
-            vote = Upvote(user_id=current_user.id)
-            print(vote) 
-            db.session.add(vote)
-            db.session.commit()
-            return redirect(url_for('main.index'))
-        else:
-            vote = Upvote(user_id=current_user.id)
-            print(vote) 
-            db.session.add(vote)
-            db.session.commit()
-            return redirect(url_for('main.index'))
 
     title = 'one'
     all = Posts.query.all()
