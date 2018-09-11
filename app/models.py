@@ -40,7 +40,6 @@ class Posts(UserMixin,db.Model):
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))    
-    upvotes_id = db.relationship('Upvote',backref='upvote',lazy="dynamic")
     comment = db.relationship('Comments',backref = 'post',lazy = "dynamic")
     
    

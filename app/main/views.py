@@ -2,9 +2,9 @@ from flask import render_template,redirect,url_for,request
 from . import main
 from .. import auth
 from .. import db,photos
-from ..models import Posts,User,Comments,Upvote
+from ..models import Posts,User,Comments
 from flask_login import login_required,current_user
-from .forms import Post,Comment,UpdateProfile,Upvotes
+from .forms import Post,Comment,UpdateProfile
 
 
 @main.route('/',methods=['GET','POST'])
