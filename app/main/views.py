@@ -2,7 +2,7 @@ from flask import render_template,redirect,url_for,request
 from . import main
 from .. import auth
 from .. import db,photos
-from ..models import Posts,User
+from ..models import Posts,User,Comments
 from flask_login import login_required,current_user
 from .forms import Post,Comment,UpdateProfile
 
@@ -93,14 +93,15 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
-@main.route('/comments/<int:id>')
+@main.route('/comments/<int:id>',methods = ['GET','POST'])
 def comment(id):
     
     comm = Comment()
     if comm.validate_on_submit():
-        feedback =  Comments(comment=form.comments.data,post_id=id,user=current_user)    
+        feedback =  Comments(comment=comm.comments.data,pitch_id=id,user_id=current_user.id)    
         feedback.save_comment()
         comment_itself = Comments.query.filter_by(pitch_id=id)
-        return render_template('comments.html',comm = comm,comment_itself=comment_itself,comment=comment_post)
-    return render_template('comments.html',comm = comm,comment=comment_post)
+        return render_template('comments.html',comm = comm,comment_itself=comment_itself)
+       
+    return render_template('comments.html',comm = comm)
 
