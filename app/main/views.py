@@ -13,7 +13,7 @@ def index():
 
     title = 'one'
     all = Posts.query.all()
-    return render_template('index.html',title=title,upvotes=upvotes,posts=all)
+    return render_template('index.html',title=title,posts=all)
 
 @main.route('/pitch',methods=['GET','POST'])
 @login_required
