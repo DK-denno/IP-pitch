@@ -2,18 +2,35 @@ from flask import render_template,redirect,url_for,request
 from . import main
 from .. import auth
 from .. import db,photos
-from ..models import Posts,User,Comments
+from ..models import Posts,User,Comments,Upvote
 from flask_login import login_required,current_user
-from .forms import Post,Comment,UpdateProfile
+from .forms import Post,Comment,UpdateProfile,Upvotes
 
 
-@main.route('/')
+@main.route('/',methods=['GET','POST'])
 
 def index():
-   
+    upvotes = Upvotes()
+    if upvotes.validate_on_submit():
+        user = User.query.filter_by(id=current_user.id)
+        print(user)
+        if user == None:
+                           
+            vote = Upvote(user_id=current_user.id)
+            print(vote) 
+            db.session.add(vote)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+        else:
+            vote = Upvote(user_id=current_user.id)
+            print(vote) 
+            db.session.add(vote)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+
     title = 'one'
     all = Posts.query.all()
-    return render_template('index.html',title=title,posts=all)
+    return render_template('index.html',title=title,upvotes=upvotes,posts=all)
 
 @main.route('/pitch',methods=['GET','POST'])
 @login_required
@@ -22,6 +39,7 @@ def pitch():
     displaying the pitching form
     '''
     pitch = Post()
+    
     if pitch.validate_on_submit():  
       
         pitches = Posts(title=pitch.title.data,post=pitch.post.data,category=pitch.category.data)
@@ -100,7 +118,7 @@ def comment(id):
     if comm.validate_on_submit():
         feedback =  Comments(comment=comm.comments.data,pitch_id=id,user_id=current_user.id)    
         feedback.save_comment()
-        comment_itself = Comments.query.filter_by(pitch_id=id)
+        comment_itself = Comments.query.filter_by(pitch_id=id).all()
         return render_template('comments.html',comm = comm,comment_itself=comment_itself)
        
     return render_template('comments.html',comm = comm)
