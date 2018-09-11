@@ -22,7 +22,7 @@ def test():
     
 @manager.shell
 def make_shell_context():
-    return dict(app=app,db=db, Posts=Posts, User=User,Posts=Post, Comments=Comments)
+    return dict(app=app,db=db, Posts=Posts, User=User, Comments=Comments)
 
 
 if __name__ == '__main__':
