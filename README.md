@@ -36,7 +36,7 @@ This project uses major technologies which are :
 * pip 18
 ### Known bugs, support and Contacts
 Still to add the voting functionalty.
-Application is still in development phase and still being updated. In case You have any issues using this code please do no hesitate to get in touch with me through sam.t.ngigi@gmail.com or leave a comment here on github.
+Application is still in development phase and still being updated. In case You have any issues using this code please do no hesitate to get in touch with me through dennisveer27@gmail.com or leave a comment here on github.
 
 License
 MIT License
