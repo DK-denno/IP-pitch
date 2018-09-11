@@ -14,7 +14,6 @@ class User(UserMixin,db.Model):
     password_secure = db.Column(db.String(255))
     post_id = db.relationship('Posts',backref = 'posts',lazy = "dynamic")
     comments_id = db.relationship('Comments',backref = 'comments',lazy = "dynamic")
-    upvotes_id = db.relationship('Upvote',backref='upvotes',lazy="dynamic")
     comments = db.relationship('Comments',backref = 'author',lazy = "dynamic")
 
     @property
