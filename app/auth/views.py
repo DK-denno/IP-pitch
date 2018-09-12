@@ -18,7 +18,7 @@ def signup():
         
         db.session.add(users)
         db.session.commit()
-        #print('wow')
+        
         
         mail_message("Welcome to pitches not bitches","email/welcome_user",users.email,user=user)
         

@@ -12,10 +12,16 @@ class UserModelTest(unittest.TestCase):
 
     def test_no_access_password(self):
         with self.assertRaises(AttributeError):
+
             self.new_user.password
 
     def test_password_verification(self):
         self.assertTrue(self.new_user.verify_password('12345'))
+
+    def save_account(self):
+        db.session.add(self.new_user)
+        db.session.commit()
+        self.asserTrue(len(user.id) > 0)
 
 
 if __name__ == '__main__':
