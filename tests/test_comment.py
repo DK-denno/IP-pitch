@@ -1,15 +1,18 @@
 import unittest
 from app import db
-from app.models import Comments
+from app.models import Posts,User,Comments
 
 class CommentmModelTest(unittest.TestCase):
 
-    def setUp(self):
-        self.new_comment = Comments(id=100,comment='a')
-   
     def tearDown(self):
+        Posts.query.delete()
+        User.query.delete()
         Comments.query.delete()
-        
+
+    def setUp(self):
+        self.new_comment = Comments(id=10,comment='a')
+   
+            
 
     def test_instance(self):
         self.assertEqual(self.new_comment.comment,'a')

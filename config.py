@@ -2,12 +2,13 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST ='app/static/photos'
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    MAIL_SERVER = os.environ.get("MAIL_SERVER")
-    MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS")
-    MAIL_PORT = os.environ.get("MAIL_PORT")
-  
+
+    
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 

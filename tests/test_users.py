@@ -1,8 +1,13 @@
 import unittest
 from app import db
-from app.models import User
+from app.models import Posts,User,Comments
 
 class UserModelTest(unittest.TestCase):
+
+    def tearDown(self):
+        Posts.query.delete()
+        User.query.delete()
+        Comments.query.delete()
 
     def setUp(self):
         self.new_user = User(id=1,user_name='dennis',email='dennisveer27@gmail.com',password_secure='12345')

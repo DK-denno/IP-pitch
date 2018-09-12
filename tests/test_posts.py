@@ -1,20 +1,22 @@
 import unittest
 from app import db
-from app.models import Posts,User
+from app.models import Posts,User,Comments
 
 class PostModelTest(unittest.TestCase):
 
 
     def tearDown(self):
         Posts.query.delete()
+        User.query.delete()
+        Comments.query.delete()
         
     def setUp(self):
-        self.new_post = Posts(id=100,title='a',post='b',category='d')
+        self.new_post = Posts(id=10,title='a',post='b',category='d')
    
        
 
     def test_instance(self):
-        self.assertEqual(self.new_post.id,100)
+        self.assertEqual(self.new_post.id,10)
         self.assertEqual(self.new_post.title,'a')
         self.assertEqual(self.new_post.post,'b')
         self.assertEqual(self.new_post.category,'d')
