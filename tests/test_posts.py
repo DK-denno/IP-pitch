@@ -11,12 +11,12 @@ class PostModelTest(unittest.TestCase):
         Comments.query.delete()
         
     def setUp(self):
-        self.new_post = Posts(id=10,title='a',post='b',category='d')
+        self.new_post = Posts(id=12,title='a',post='b',category='d')
    
        
 
     def test_instance(self):
-        self.assertEqual(self.new_post.id,10)
+        self.assertEqual(self.new_post.id,12)
         self.assertEqual(self.new_post.title,'a')
         self.assertEqual(self.new_post.post,'b')
         self.assertEqual(self.new_post.category,'d')

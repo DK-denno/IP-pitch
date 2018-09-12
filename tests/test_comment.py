@@ -10,7 +10,7 @@ class CommentmModelTest(unittest.TestCase):
         Comments.query.delete()
 
     def setUp(self):
-        self.new_comment = Comments(id=10,comment='a')
+        self.new_comment = Comments(id=12,comment='a')
    
             
 
