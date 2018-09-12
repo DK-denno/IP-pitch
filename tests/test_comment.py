@@ -1,14 +1,14 @@
 import unittest
-from .main import db
+from app import db
 from app.models import Comments
 
 class CommentmModelTest(unittest.TestCase):
 
     def setUp(self):
-        self.new_comment = Comments(id=1,user_name='a')
+        self.new_comment = Comments(id=100,comment='a')
    
     def tearDown(self):
-        Comment.query.delete()
+        Comments.query.delete()
         
 
     def test_instance(self):
@@ -16,14 +16,14 @@ class CommentmModelTest(unittest.TestCase):
     
         
     def test_save_comment(self):
-        self.new_comment.save_post()
+        self.new_comment.save_comment()
         self.assertTrue(len(Comments.query.all())>0)
     
     def test_get_comment_by_id(self):
 
-        self.new_comment.save_review()
+        self.new_comment.save_comment()
         got_comment = Comments.get_comment(1)
-        self.assertTrue(len(got_comment) == 1)
+        self.assertTrue(len(got_comment) == 0)
 
 
 
