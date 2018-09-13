@@ -1,22 +1,53 @@
-{% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf %}
-{% block content %}
+{% extends 'base.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block content %}
 
 <div class="container">
-    <div class="col-md-6">
-        {% for com in comment_itself %}
-
-        {{com.comment}}
-
-        {% endfor %}
-    </div>
 
     <div class="col-md-5" style="float: right; margin-top: 100px;">
 
         {{wtf.quick_form(comm)}}
     </div>
+    <div class="col-md-6">
+        <div class="card mt-3 " style="width: 200px; text-align: center">
+            <div class="card-header">
+                POSTED BY: {{comments_it.post.posts.user_name}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{comments_it.post.title}}</h5>
+                <p class="card-text">{{comments_it.post.post}}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-subtitle mb-2 text-muted"><small class="text-muted">posted on :{{comments_it.post.posted}}</small></p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
 
 
+
+
+
+<div class="container-fluid" style="width: 200;">
+
+    <div class="row">
+        {% for com in comment_itself %}
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">by:{{com.comments.user_name}}</div>
+                <div class="card-body text-center">
+                    <p class="card-text">{{com.comment}}</p>
+                </div>
+            </div>
+            <br>
+        </div>
+
+      
+        {% endfor %}
+
+    </div>
 </div>
 
 {% endblock %}

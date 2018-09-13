@@ -6,7 +6,6 @@
 <!-- displaying  Username-->
   <div class="col-md-4">
     <h3> {{user.user_name| capitalize}} </h3>
-
     <!--Displaying user bio-->
     {% if user.bio %}
       <p> {{user.bio}}</p>
@@ -37,4 +36,5 @@
 {% if user == current_user %}
     <a href="{{url_for('main.update_profile',uname=user.user_name)}}">Edit profile</a>
 {% endif %}
+
 {% endblock %}

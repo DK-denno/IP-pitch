@@ -13,6 +13,7 @@ def index():
 
     title = 'one'
     all = Posts.query.all()
+   
     return render_template('index.html',title=title,posts=all)
 
 @main.route('/pitch',methods=['GET','POST'])
@@ -25,7 +26,7 @@ def pitch():
     
     if pitch.validate_on_submit():  
       
-        pitches = Posts(title=pitch.title.data,post=pitch.post.data,category=pitch.category.data)
+        pitches = Posts(title=pitch.title.data,post=pitch.post.data,category=pitch.category.data,user_id=current_user.id)
         pitches.save_post()
         return redirect(url_for('main.index'))
 
@@ -66,6 +67,9 @@ def pick():
 def profile(uname):
     user = User.query.filter_by(user_name = uname).first()
 
+
+    
+
     
     return render_template("profile/profile.html", user = user)
 
@@ -103,6 +107,8 @@ def comment(id):
         feedback.save_comment()
         comment_itself = Comments.query.filter_by(pitch_id=id).all()
         return render_template('comments.html',comm = comm,comment_itself=comment_itself)
-       
-    return render_template('comments.html',comm = comm)
+    comment_it = Comments.query.filter_by(pitch_id=id).all()
+    comments_it = Comments.query.filter_by(pitch_id=id).first()
+    print(comments_it)
+    return render_template('comments.html',comm = comm,comment_itself=comment_it,comments_it=comments_it)
 
