@@ -5,18 +5,14 @@ from app.models import Posts,User,Comments
 class PostModelTest(unittest.TestCase):
 
 
-    def tearDown(self):
-        Posts.query.delete()
-        User.query.delete()
-        Comments.query.delete()
+   
         
     def setUp(self):
-        self.new_post = Posts(id=12,title='a',post='b',category='d')
-   
+        self.user_denno = User(user_name = "denno", password="banana")
+        self.new_post = Posts(title='a',post='b',category='d',posts=self.user_denno)
        
 
     def test_instance(self):
-        self.assertEqual(self.new_post.id,12)
         self.assertEqual(self.new_post.title,'a')
         self.assertEqual(self.new_post.post,'b')
         self.assertEqual(self.new_post.category,'d')

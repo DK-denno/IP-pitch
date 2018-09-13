@@ -4,13 +4,10 @@ from app.models import Posts,User,Comments
 
 class UserModelTest(unittest.TestCase):
 
-    def tearDown(self):
-        Posts.query.delete()
-        User.query.delete()
-        Comments.query.delete()
+  
 
     def setUp(self):
-        self.new_user = User(id=12,user_name='dennis',email='dennisveer27@gmail.com',password_secure='12345')
+        self.new_user = User(user_name='dennis',email='dennisveer27@gmail.com',password_secure='12345')
 
     def test_password_setter(self):
         self.assertTrue(self.new_user.password_secure is not None)

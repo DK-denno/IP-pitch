@@ -4,13 +4,9 @@ from app.models import Posts,User,Comments
 
 class CommentmModelTest(unittest.TestCase):
 
-    def tearDown(self):
-        Posts.query.delete()
-        User.query.delete()
-        Comments.query.delete()
-
+   
     def setUp(self):
-        self.new_comment = Comments(id=12,comment='a')
+        self.new_comment = Comments(comment='a')
    
             
 
@@ -26,7 +22,7 @@ class CommentmModelTest(unittest.TestCase):
 
         self.new_comment.save_comment()
         got_comment = Comments.get_comment(1)
-        self.assertTrue(len(got_comment) == 0)
+        self.assertTrue(len(got_comment) > 0)
 
 
 
