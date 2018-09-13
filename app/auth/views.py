@@ -20,7 +20,7 @@ def signup():
         db.session.commit()
         
         
-        mail_message("Welcome to pitches not bitches","email/welcome_user",users.email,user=user)
+        mail_message("Welcome to pitches","email/welcome_user",users.email,user=user)
         
         return redirect(url_for('auth.login'))
 
